@@ -6,6 +6,7 @@ import {router} from './routes'
 
 const app = express();
 app.use(express.json());
+// Poder ser acessado de qualquer ip
 app.use(cors())
 app.use(router);
 
