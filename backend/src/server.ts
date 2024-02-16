@@ -6,6 +6,7 @@ import {router} from './routes'
 
 const app = express();
 app.use(express.json());
+
 // Poder ser acessado de qualquer ip
 app.use(cors())
 app.use(router);
@@ -24,6 +25,6 @@ app.use((err : Error, req: Request, res: Response, next: NextFunction)=>{
     })
 })
 
-app.listen(3333, () =>{
+app.listen(3636, () =>{
     console.log("Servidor Online!!")
 })
