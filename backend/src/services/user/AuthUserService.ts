@@ -12,9 +12,7 @@ class AuthUserService{
 
         // Verificar se o email existie
         const user = await prismaClient.user.findFirst({
-            where:{
-              email: email
-            }
+            where:{ email: email }
         })
 
         if (!user) {
