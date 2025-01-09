@@ -1,31 +1,36 @@
-import { CreateProductService, ProductRequest } from "../../services/product/CreateProductService"
-import {Request, Response} from "express"
+import {Request, Response } from 'express'
+import { CreateProductService } from '../../services/product/CreateProductService'
 
-class CreateProductController {
-    async handle (req: Request, res: Response) {
 
-        const {name, price, description, category_id}  = req.body  
+class CreateProductController{
+  async handle(req: Request, res: Response){
 
-        const createProductService = new CreateProductService()
+    console.log(req)
 
-        if (!req.file) {
-            throw new Error("error upload file")
-        } else {
+    const { name, price, description, category_id } = req.body;
 
-            const {originalname, filename} = req.file
-            console.log(filename)
-            const product = await createProductService.execute({
-                name,
-                price,
-                description,
-                banner: ' ',
-                category_id 
-            } as ProductRequest )
+    const createProductService = new CreateProductService();
 
-            return res.json(product)
-        }
+    if(!req.file){
+      throw new Error("error upload file")
+    }else{
+
+      const { filename: banner } = req.file;
+
+      console.log(banner);
+
+      const product = await createProductService.execute({
+        name,
+        price,
+        description,
+        banner,
+        category_id
+      });
+  
+      return res.json(product)
     }
+
+  }
 }
-export {CreateProductController}
 
-
+export { CreateProductController }

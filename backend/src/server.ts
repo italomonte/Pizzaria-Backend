@@ -1,6 +1,7 @@
 import express, {Request, Response, NextFunction} from 'express'
 import 'express-async-errors';
 import cors from 'cors'
+import path from 'path'
 
 import {router} from './routes'
 
@@ -10,6 +11,12 @@ app.use(express.json());
 // Poder ser acessado de qualquer ip
 app.use(cors())
 app.use(router);
+
+// URL TO ACCESS FILES 
+app.use(
+    '/files',
+    express.static(path.resolve(__dirname, '..', 'tmp'))
+)
 
 // Tratamento de erros
 app.use((err : Error, req: Request, res: Response, next: NextFunction)=>{
