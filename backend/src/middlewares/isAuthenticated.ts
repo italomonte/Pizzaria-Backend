@@ -6,6 +6,7 @@ interface PayLoad {
     sub: string;
 }
 
+// verifica que quem está tentnaod acessar aquela rota está logado
 export function isAuthenticated
     (req:Request,
      res:Response
