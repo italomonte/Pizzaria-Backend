@@ -4,17 +4,28 @@ import {Request, Response} from "express"
 class CreateProductController {
     async handle (req: Request, res: Response) {
 
+        const {name, price, description, category_id}  = req.body  
+
         const createProductService = new CreateProductService()
 
-        //const {name, price, description, category_id}  = req.body  
-        //let banner = ''
-        
-        const productRequest = req.body as ProductRequest
-        
-        const product = await createProductService.execute(productRequest)
+        if (!req.file) {
+            throw new Error("error upload file")
+        } else {
 
-        return res.json(product)
-        
+            const {originalname, filename} = req.file
+            console.log(filename)
+            const product = await createProductService.execute({
+                name,
+                price,
+                description,
+                banner: ' ',
+                category_id 
+            } as ProductRequest )
+
+            return res.json(product)
+        }
     }
 }
 export {CreateProductController}
+
+
