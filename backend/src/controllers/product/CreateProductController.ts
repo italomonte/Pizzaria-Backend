@@ -5,8 +5,6 @@ import { CreateProductService } from '../../services/product/CreateProductServic
 class CreateProductController{
   async handle(req: Request, res: Response){
 
-    console.log(req)
-
     const { name, price, description, category_id } = req.body;
 
     const createProductService = new CreateProductService();

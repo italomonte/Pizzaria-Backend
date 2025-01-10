@@ -23,7 +23,6 @@ export function isAuthenticated
 
     const [, token] = authToken.split(" ")
 
-    console.log(token)
 
     try {
         // validar token

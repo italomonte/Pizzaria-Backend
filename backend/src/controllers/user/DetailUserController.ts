@@ -6,7 +6,6 @@ class DetailUserController {
 
         const user_id = req.user_id;
 
-        console.log("id do user: ", user_id)
 
         const detailUserService = new DetailUserService;
 
