@@ -13,6 +13,15 @@ import {ListCategoryController} from "./controllers/category/ListCategoryControl
 import { CreateProductController } from './controllers/product/CreateProductController'
 import { ListProductByCategoryController } from './controllers/product/ListProductByCategoryController'
 
+//ORDER
+import { CreateOrderController } from './controllers/order/CreateOrderController'
+import { CloseOrderController } from './controllers/order/CloseOrderController'
+import { SendOrderController } from './controllers/order/SendOrderController'
+
+//ITEM
+import { AddItemController } from './controllers/item/AddItemController'
+import { RemoveItemController } from './controllers/item/RemoveItemController'
+
 // MIDDLEWARES
 import { isAuthenticated } from './middlewares/isAuthenticated'
 
@@ -44,4 +53,13 @@ router.post('/product', isAuthenticated, upload.single('file'), new CreateProduc
 router.get('/category/product', isAuthenticated, new ListProductByCategoryController().handle)
 
 
-export { router };
+//-- ROTAS ORDER
+router.post('/order', isAuthenticated, new CreateOrderController().handle)
+router.delete('/order', isAuthenticated, new CloseOrderController().handle)
+router.put('/order/send', isAuthenticated, new SendOrderController().handle)
+
+//-- ROTAS ITEM
+router.post('/order/add', isAuthenticated, new AddItemController().handle)
+router.delete('/order/remove', isAuthenticated, new RemoveItemController().handle)
+
+export { router }; 
