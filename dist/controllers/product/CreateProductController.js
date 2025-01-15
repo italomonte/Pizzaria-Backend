@@ -26,8 +26,6 @@ class CreateProductController {
                 throw new Error("error upload file image");
             }
             else {
-                //multer
-                // const { filename: banner } = req.file;
                 const file = req.files['file'];
                 if (Array.isArray(file)) {
                     throw new Error("Multiplos arquivos carregados não é suportado");
