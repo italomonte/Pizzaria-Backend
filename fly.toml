@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for pizzaria-backend on 2025-01-15T12:06:08-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'pizzaria-backend'
+primary_region = 'gru'
+
+[build]
+
+[deploy]
+  release_command = 'npx prisma migrate deploy'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
